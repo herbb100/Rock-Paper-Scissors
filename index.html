@@ -3,9 +3,72 @@
     <head>
         <meta charset="utf-8">
         <title>Rock Paper Scissors</title>
+        <style>
+            div{
+                background-color: rgb(8, 40, 62);
+                margin: 100px;
+                padding: 100px;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .buttons{
+                border-radius: 30px;
+            }
+
+            button{
+                
+                width: 350px;
+                height: 100px;
+                font-size: xx-large;    
+            }
+
+            .rock{
+                background-color: rgb(94, 2, 2);
+                color: orange;
+                border-radius: 25px;
+            }
+
+            .paper{
+                background-color: rgb(91, 4, 87);
+                color: orange;
+                border-radius: 25px;
+            }
+
+            .scissors{
+                background-color: rgb(4, 80, 4);
+                color: orange;
+                border-radius: 25px;
+            }
+
+            h1{
+                text-align: center;
+                color:blueviolet;
+            }
+
+            body{
+                background-color: rgb(166, 212, 85);
+            }
+
+            .result{
+                background-color: rgb(171, 211, 176);
+                text-align: center;
+                border-radius: 25px;
+                font-size: xx-large;
+            }
+
+           
+        </style>
 
     </head>
     <body>
+        <h1>ROCK PAPER SCISSORS</h1>
+        <div class="buttons">
+            <button  class="rock">Rock</button>
+            <button  class="paper">Paper</button>
+            <button  class="scissors">Scissors</button>
+        </div>
+        <div class="result"></div>
 
     </body>
     <script src="script.js"></script>
