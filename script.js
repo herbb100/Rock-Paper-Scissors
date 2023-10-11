@@ -6,124 +6,137 @@ function getComputerChoice(){
     //console.log(a);
     let choice = [];
     choice.push("Rock","Paper","Scissors");
-    return choice[a]
+    return choice[a];
 }
 
-let playerWinCount = 0
-let computerWinCount = 0 
+let playerWinCount = 0;
+let computerWinCount = 0;
+let draws = 0;
 
-/* OLD ONE ROUND CODE
-function oneRound(playerSelection,computerSelection){
-    if(playerSelection==="rock"&&computerSelection==="scissors"){
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        playerWinCount++
-    }else if(playerSelection==="scissors"&&computerSelection==="paper"){
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        playerWinCount++
-    }else if(playerSelection==="paper"&&computerSelection==="rock"){
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        playerWinCount++
-    }else if(playerSelection==="paper"&&computerSelection==="scissors"){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        computerWinCount++
-    }else if(playerSelection==="scissors"&&computerSelection==="rock"){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        computerWinCount++ 
-    }else if(playerSelection==="rock"&&computerSelection==="paper"){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        computerWinCount++
-    }else{
-        console.log("Game over")
-    }
-}
-*/
-
-let cChoice = getComputerChoice();
 
 const buttonRock = document.querySelector('button.rock');
 const buttonPaper = document.querySelector('button.paper');
 const buttonScissors = document.querySelector('button.scissors');
-const result = document.querySelector('div.result')
+const result = document.querySelector('div.result');
 
-function oneRound2(){
-    let computerSelection = cChoice.toLowerCase();
-    console.log("The computers choice is",computerSelection);
-
-    buttonRock.addEventListener('click',()=>{
-        let playerSelection = buttonRock.textContent.toLowerCase();
-        console.log("The players choice is",playerSelection);
-
-        if( playerSelection==="rock" && computerSelection === "scissors"){
-            result.textContent =`You win! ${playerSelection} beats ${computerSelection}`;
-            playerWinCount++
-
-        }else if(playerSelection==="rock"&&computerSelection==="paper"){
-            result.textContent =`You lose! ${computerSelection} beats ${playerSelection}`;
-            computerWinCount++
-
+function gameResult(playerWins,computerWins,drawnGames){
+    let gamesPlayed = playerWins + computerWins + drawnGames;
+    if(gamesPlayed === 5){
+        if(playerWins > computerWins){
+            result.textContent = "YOU HAVE WON THE FIVE ROUND GAME!!!";
         }else{
-            result.textContent = "Game over!!";        
-        }
-    });
-
-    buttonPaper.addEventListener('click',()=>{
-        let playerSelection = buttonPaper.textContent.toLowerCase();
-        console.log("The players choice is",playerSelection);
-
-
-        if(playerSelection === "paper" && computerSelection === "rock"){
-            result.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
-            playerWinCount++;
-
-        }else if(playerSelection === "paper" && computerSelection === "scissors"){
-            result.textContent =`You lose! ${computerSelection} beats ${playerSelection}`;
-            computerWinCount++;
-
-        }else{
-            result.textContent = "Game over!!";
-        }   
-    });
-
-    buttonScissors.addEventListener('click', ()=>{
-        let playerSelection = buttonScissors.textContent.toLowerCase();
-        console.log("The players choice is",playerSelection);
-
-        if(playerSelection === "scissors" && computerSelection === "paper"){
-            result.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
-            playerWinCount++;
-
-        }else if(playerSelection==="scissors"&&computerSelection==="rock"){
-            result.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
-            computerWinCount++;
-
-        }else{
-        result.textContent = "Game over!!";
-        }
-    });
+            result.textContent = "you have lost the five round game :(";
+        };
+        playerWinCount = 0;
+        computerWinCount = 0;
+        draws = 0;
+    };
 };
 
-oneRound2()
- 
 
-/*function game(){
+
+buttonRock.addEventListener('click',()=>{
     
-    for (let i = 0;i < 5;i++){
-        let pChoice = prompt("what do you pick btwn Rock,Paper and Scissors?").toLowerCase();
-        let cChoice = getComputerChoice().toLowerCase();
-        console.log(cChoice,"-computer choice");
-        console.log(pChoice,"-players choice");
+    let playerSelection = buttonRock.textContent.toLowerCase();
+    let computerSelection = getComputerChoice().toLowerCase();
+    console.log("The computers choice is",computerSelection);
+    console.log("The players choice is",playerSelection);
+    
+    
 
-        oneRound(pChoice,cChoice);
-           
-    }
-    console.log("Computer wins",computerWinCount)
-    console.log("Player wins",playerWinCount)
-    if(playerWinCount>computerWinCount){
-        console.log("YOU WIN THE FIVE ROUND GAME!!!")
+    if( playerSelection === "rock" && computerSelection === "scissors"){
+        result.textContent =`You win! ${playerSelection} beats ${computerSelection}`;
+        playerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
+    }else if(playerSelection === "rock" && computerSelection==="paper"){
+        result.textContent =`You lose! ${computerSelection} beats ${playerSelection}`;
+        computerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
     }else{
-        console.log("YOU LOSE THE FIVE ROUND GAME!!!")
+        result.textContent = "Game over!!";
+        draws++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);        
     }
-}
+});
+
+buttonPaper.addEventListener('click',()=>{
+    let playerSelection = buttonPaper.textContent.toLowerCase();
+    let computerSelection = getComputerChoice().toLowerCase();
+    console.log("The computers choice is",computerSelection);
+    console.log("The players choice is",playerSelection);
+
+
+    if(playerSelection === "paper" && computerSelection === "rock"){
+        result.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+        playerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
+    }else if(playerSelection === "paper" && computerSelection === "scissors"){
+        result.textContent =`You lose! ${computerSelection} beats ${playerSelection}`;
+        computerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
+    }else{
+        result.textContent = "Game over!!";
+        draws++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+    }   
+});
+
+buttonScissors.addEventListener('click', ()=>{
+    let playerSelection = buttonScissors.textContent.toLowerCase();
+    let computerSelection = getComputerChoice().toLowerCase();
+    console.log("The computers choice is",computerSelection);
+    console.log("The players choice is",playerSelection);
+
+    if(playerSelection === "scissors" && computerSelection === "paper"){
+        result.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+        playerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
+    }else if(playerSelection === "scissors" && computerSelection === "rock"){
+        result.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+        computerWinCount++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+
+    }else{
+        result.textContent = "Game over!!";
+        draws++;
+        console.log(`player win count is ${playerWinCount} and the computer has won ${computerWinCount}`);
+        gameResult(playerWinCount,computerWinCount,draws);
+    }
+});
+
+ 
+/*unction game(){
+        
+    for (let i = 0; i < 5;i++ ){ 
+        let cChoice = getComputerChoice().toLowerCase();
+        console.log("The computers choice is",cChoice);
+
+        oneRound2(cChoice);
+        console.log("Computer wins",computerWinCount);
+        console.log("Player wins",playerWinCount);
+        
+    }
+    
+    if(playerWinCount>computerWinCount){
+        result.textContent = "YOU WIN THE FIVE ROUND GAME!!!";
+    }else{
+        result.textContent = "YOU LOSE THE FIVE ROUND GAME!!!";
+    }
+    
+};
 
 game()
 */
