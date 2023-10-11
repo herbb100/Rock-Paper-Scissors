@@ -117,29 +117,7 @@ buttonScissors.addEventListener('click', ()=>{
     }
 });
 
- 
-/*unction game(){
-        
-    for (let i = 0; i < 5;i++ ){ 
-        let cChoice = getComputerChoice().toLowerCase();
-        console.log("The computers choice is",cChoice);
 
-        oneRound2(cChoice);
-        console.log("Computer wins",computerWinCount);
-        console.log("Player wins",playerWinCount);
-        
-    }
-    
-    if(playerWinCount>computerWinCount){
-        result.textContent = "YOU WIN THE FIVE ROUND GAME!!!";
-    }else{
-        result.textContent = "YOU LOSE THE FIVE ROUND GAME!!!";
-    }
-    
-};
-
-game()
-*/
 
 
 
